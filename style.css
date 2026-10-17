@@ -1,8 +1,8 @@
 :root {
-  --green-dark: #1b5e20;
-  --green: #2e7d32;
-  --green-mid: #388e3c;
-  --green-light: #e8f5e9;
+  --green-dark: #1a3fa8;   /* نام green ہے مگر رنگ نیلا ہے */
+  --green: #2f5bd7;
+  --green-mid: #3f6ee8;
+  --green-light: #e8eefc;
   --white: #fff;
   --surface: #f2f2f2;
   --black: #1a1a1a;
@@ -161,7 +161,7 @@ main { max-width: 680px; margin: 0 auto; padding: 8px 0 16px; }
 .badge-os {
   display: inline-flex; align-items: center; gap: 3px;
   font-size: 11px; color: var(--green-mid);
-  border: 1px solid #a5d6a7; background: var(--green-light);
+  border: 1px solid #b7c8f5; background: var(--green-light);
   padding: 2px 8px; border-radius: 999px;
 }
 .badge-os .ico { width: 11px; height: 11px; }
@@ -192,7 +192,7 @@ main { max-width: 680px; margin: 0 auto; padding: 8px 0 16px; }
 }
 .badge {
   font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 999px;
-  background: var(--green-light); color: var(--green-mid); border: 1px solid #a5d6a7;
+  background: var(--green-light); color: var(--green-mid); border: 1px solid #b7c8f5;
 }
 .badge-new { background: #fff3e0; color: #e65100; border-color: #ffcc80; }
 .open-btn {
@@ -314,7 +314,7 @@ main { max-width: 680px; margin: 0 auto; padding: 8px 0 16px; }
 .feature-scroll::-webkit-scrollbar { display: none; }
 .feat-card {
   flex: none; width: 128px; border-radius: 10px;
-  background: var(--green-light); border: 1px solid #c8e6c9;
+  background: var(--green-light); border: 1px solid #c9d6f7;
   padding: 14px 10px; text-align: center;
   display: flex; flex-direction: column; align-items: center; gap: 6px;
 }
@@ -393,7 +393,7 @@ main { max-width: 680px; margin: 0 auto; padding: 8px 0 16px; }
 .rv-comment { font-size: 14px; color: #424242; margin: 6px 0 0 36px; overflow-wrap: anywhere; }
 #rv-list { margin-top: 10px; }
 #rv-more { text-align: center; padding-top: 10px; }
-.rv-more-btn { background: var(--green-light); color: var(--green-dark); border: 1px solid #a5d6a7; border-radius: 999px; padding: 9px 20px; font-size: 13px; font-weight: 700; cursor: pointer; }
+.rv-more-btn { background: var(--green-light); color: var(--green-dark); border: 1px solid #b7c8f5; border-radius: 999px; padding: 9px 20px; font-size: 13px; font-weight: 700; cursor: pointer; }
 .rv-stars { display: flex; gap: 6px; margin-bottom: 12px; }
 .rv-stars button { background: none; border: none; font-size: 30px; line-height: 1; color: #d1d5db; cursor: pointer; padding: 2px; }
 .rv-stars button.on { color: var(--star); }
