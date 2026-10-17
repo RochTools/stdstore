@@ -169,6 +169,38 @@ main { max-width: 680px; margin: 0 auto; padding: 8px 0 16px; }
 .app-arrow { color: var(--muted); flex: none; }
 .app-arrow .ico { width: 18px; height: 18px; }
 
+/* Manual cards (pasted into index.html) */
+.store-card {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px 16px; border-bottom: 1px solid var(--border);
+}
+.store-card:last-child { border-bottom: none; }
+.card-left { display: flex; align-items: center; gap: 14px; flex: 1; min-width: 0; }
+.card-thumb-wrap {
+  width: 62px; height: 62px; min-width: 62px; border-radius: 14px;
+  overflow: hidden; background: var(--green-light);
+}
+.card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card-info { flex: 1; min-width: 0; }
+.card-header-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.card-title { font-size: 15px; font-weight: 700; }
+.card-subtitle { font-size: 12px; color: var(--green-mid); margin-bottom: 2px; }
+.card-desc {
+  font-size: 13px; color: var(--muted);
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
+.badge {
+  font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 999px;
+  background: var(--green-light); color: var(--green-mid); border: 1px solid #a5d6a7;
+}
+.badge-new { background: #fff3e0; color: #e65100; border-color: #ffcc80; }
+.open-btn {
+  display: inline-block; flex: none; background: var(--green); color: #fff;
+  padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 700;
+}
+.open-btn:hover { background: var(--green-dark); }
+
 .empty { color: var(--muted); padding: 40px 16px; text-align: center; font-size: 15px; }
 
 /* ── Bottom Navigation ── */
@@ -346,3 +378,30 @@ main { max-width: 680px; margin: 0 auto; padding: 8px 0 16px; }
   .detail-name { font-size: 18px; }
   .rating-num  { font-size: 38px; }
 }
+
+
+/* ── Reviews (Firebase) ── */
+.rv-note { font-size: 13px; color: var(--muted); }
+.rv-retry { background: none; border: none; color: var(--green); font-weight: 700; cursor: pointer; font-size: 13px; }
+.rv-card { padding: 14px 0; border-bottom: 1px solid var(--border); }
+.rv-card:last-child { border-bottom: none; }
+.rv-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.rv-author { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rv-avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--green-light); color: var(--green); display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex: none; }
+.rv-card-stars { color: var(--star); font-size: 13px; white-space: nowrap; }
+.rv-date { font-size: 11px; color: var(--muted); margin: 2px 0 0 36px; }
+.rv-comment { font-size: 14px; color: #424242; margin: 6px 0 0 36px; overflow-wrap: anywhere; }
+#rv-list { margin-top: 10px; }
+#rv-more { text-align: center; padding-top: 10px; }
+.rv-more-btn { background: var(--green-light); color: var(--green-dark); border: 1px solid #a5d6a7; border-radius: 999px; padding: 9px 20px; font-size: 13px; font-weight: 700; cursor: pointer; }
+.rv-stars { display: flex; gap: 6px; margin-bottom: 12px; }
+.rv-stars button { background: none; border: none; font-size: 30px; line-height: 1; color: #d1d5db; cursor: pointer; padding: 2px; }
+.rv-stars button.on { color: var(--star); }
+.rv-field { display: block; width: 100%; border: 1.5px solid var(--border); border-radius: 12px; padding: 12px 14px; font: inherit; font-size: 14px; margin-bottom: 12px; background: #fff; outline: none; }
+.rv-field:focus { border-color: var(--green); }
+textarea.rv-field { min-height: 96px; resize: vertical; }
+.rv-submit { background: var(--green); color: #fff; border: none; border-radius: 999px; padding: 12px 28px; font-size: 14px; font-weight: 700; cursor: pointer; }
+.rv-submit:disabled { opacity: .6; cursor: not-allowed; }
+.rv-msg { margin-top: 12px; padding: 12px 14px; border-radius: 12px; font-size: 13px; font-weight: 500; }
+.rv-msg.success { background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
+.rv-msg.error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
