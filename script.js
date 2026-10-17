@@ -146,6 +146,7 @@ const ICONS = {
   game:     '<rect x="2" y="7" width="20" height="10" rx="5"/><path d="M7 12h4M9 10v4M15 13h.01M17.5 11h.01"/>',
   box:      '<rect x="3" y="3" width="18" height="18" rx="3"/>',
   arrow:    '<polyline points="9 18 15 12 9 6"/>',
+  gear:     '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
 };
 
 function icon(name, cls = 'ico') {
@@ -170,6 +171,14 @@ function setupMenu() {
   const menu    = $('#side-menu');
   const overlay = $('#overlay');
   if (!btn || !menu) return;
+
+  // مینیو کے سب سے اوپر عنوان اور گراری (ایک بار بنتا ہے)
+  if (!menu.querySelector('.menu-head')) {
+    const head = document.createElement('div');
+    head.className = 'menu-head';
+    head.innerHTML = `${icon('gear')}<span>Menu</span>`;
+    menu.prepend(head);
+  }
 
   const open  = () => { menu.classList.add('open');    overlay && overlay.classList.add('show'); };
   const close = () => { menu.classList.remove('open'); overlay && overlay.classList.remove('show'); };
