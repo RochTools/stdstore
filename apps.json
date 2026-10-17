@@ -5,7 +5,7 @@
       "name": "StepTuDeen",
       "category": "app",
       "icon": "icons/steptudeen.png",
-      "path": "app/steptudeen.html",
+      "path": "https://steptudeen.pages.dev/",
       "developer": "StepTuDeen",
       "tagline": "A tap towards deen",
       "version": "v0.1.0",
@@ -29,7 +29,7 @@
       "keywords": ["StepTuDeen", "steptudeen", "quran", "hadith", "prayer", "adhan", "mosque", "qibla", "tasbih", "islam", "قرآن", "حدیث", "نماز"],
       "verified": true,
       "featured": true,
-      "source": "https://github.com/RochTools/steptodeenQuran"
+      "source": "https://github.com/RochTools/steptudeen"
     }
   ]
 }
