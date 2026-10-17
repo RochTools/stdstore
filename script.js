@@ -113,7 +113,7 @@ const HOW_TO_HTML = `
   <ol>
     <li>Open this app in Chrome.</li>
     <li>Tap the three-dot menu (⋮) at the top right.</li>
-    <li>Tap <strong>Add to Home screen</strong> or <strong>Install app</strong>.</li>
+    <li>Tap <strong>Add to Home screen or install and create shortcut</strong> or <strong>Install app</strong>.</li>
     <li>Tap <strong>Add</strong> or <strong>Install</strong>. The icon appears on your home screen.</li>
   </ol>
   <h3>iPhone (Safari)</h3>
