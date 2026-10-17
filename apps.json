@@ -1,0 +1,46 @@
+{
+  "apps": [
+    {
+      "id": "car",
+      "name": "Car App",
+      "category": "app",
+      "icon": "🚗",
+      "path": "app/car.html",
+      "developer": "StepTuDeen",
+      "short": "Sample car app. Replace with your own app.",
+      "description": "Replace this text with the full description of your app.",
+      "keywords": ["car", "vehicle", "app", "گاڑی"],
+      "verified": true,
+      "featured": true,
+      "source": ""
+    },
+    {
+      "id": "calc",
+      "name": "Calculator",
+      "category": "tool",
+      "icon": "🧮",
+      "path": "tool/calc.html",
+      "developer": "google",
+      "short": "Quick calculator for adding, subtracting, multiplying and dividing.",
+      "description": "A basic calculator for everyday math. Replace this text with the full description of your tool.",
+      "keywords": ["calculator", "math", "calc", "numbers", "کیلکولیٹر"],
+      "verified": true,
+      "featured": false,
+      "source": ""
+    },
+    {
+      "id": "snake",
+      "name": "Snake",
+      "category": "game",
+      "icon": "🐍",
+      "path": "game/snake.html",
+      "developer": "StepTuDeen",
+      "short": "The classic snake game in your browser.",
+      "description": "Use the arrow keys (or swipe on a phone) to eat food and grow. Replace this text with the full description of your game.",
+      "keywords": ["snake", "game", "arcade", "gaming", "گیم"],
+      "verified": false,
+      "featured": true,
+      "source": ""
+    }
+  ]
+}
