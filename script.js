@@ -609,7 +609,7 @@ function setupPWA() {
     const l = document.createElement('link'); l.rel = 'manifest'; l.href = 'manifest.webmanifest'; head.appendChild(l);
   }
   if (!head.querySelector('meta[name="theme-color"]')) {
-    const m = document.createElement('meta'); m.name = 'theme-color'; m.content = '#1b5e20'; head.appendChild(m);
+    const m = document.createElement('meta'); m.name = 'theme-color'; m.content = '#ffffff'; head.appendChild(m);
   }
   if (!head.querySelector('link[rel="apple-touch-icon"]')) {
     const l = document.createElement('link'); l.rel = 'apple-touch-icon'; l.href = 'icons/icon-192.png'; head.appendChild(l);
