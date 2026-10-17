@@ -1,7 +1,7 @@
 const CATS = {
-  app:  { label: 'App',  icon: '📱' },
-  tool: { label: 'Tool', icon: '🛠️' },
-  game: { label: 'Game', icon: '🎮' },
+  app:  { label: 'App',  icon: 'app' },
+  tool: { label: 'Tool', icon: 'tool' },
+  game: { label: 'Game', icon: 'game' },
 };
 
 const INFO = {
@@ -56,6 +56,29 @@ const HOW_TO_HTML = `
     <li>Click <strong>Install</strong>.</li>
   </ol>
 `;
+
+const ICONS = {
+  menu: '<path d="M3 6h18M3 12h18M3 18h18"/>',
+  back: '<path d="M19 12H5M12 19l-7-7 7-7"/>',
+  check: '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.8"/>',
+  open: '<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
+  download: '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',
+  car: '<path d="M5 16v-4l2-5h10l2 5v4M3 12h18v4H3zM7 16v2M17 16v2"/><circle cx="7.5" cy="13.5" r="0.6"/><circle cx="16.5" cy="13.5" r="0.6"/>',
+  calc: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h1.5M12.5 12h1.5M8 16h1.5M12.5 16h1.5"/>',
+  snake: '<rect x="2" y="7" width="20" height="10" rx="5"/><path d="M7 12h4M9 10v4M15 13h.01M17.5 11h.01"/>',
+  app: '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/>',
+  tool: '<path d="M14.7 6.3a4 4 0 0 0 5 5l-8.4 8.4a2.8 2.8 0 0 1-4-4z"/>',
+  game: '<rect x="2" y="7" width="20" height="10" rx="5"/><path d="M7 12h4M9 10v4M15 13h.01M17.5 11h.01"/>',
+  box: '<rect x="3" y="3" width="18" height="18" rx="3"/>',
+};
+
+function icon(name, cls = 'ico') {
+  if (/^(https?:\/\/|\.?\/?[\w\-\/.]+\.(svg|png|jpe?g|webp|gif)$)/i.test(name || '')) {
+    return `<img class="icon-img" src="${name}" alt="">`;
+  }
+  const body = ICONS[name] || ICONS.box;
+  return `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
+}
 
 const $ = (sel) => document.querySelector(sel);
 
@@ -120,10 +143,10 @@ function filterApps(apps, query, cat, view) {
 
 /* ---------- Cards ---------- */
 function appCard(app) {
-  const badge = app.verified ? '<span class="badge">✔ Verified</span>' : '';
+  const badge = app.verified ? `<span class="badge">${icon('check')} Verified</span>` : '';
   return `
     <a class="card" href="view.html?id=${encodeURIComponent(app.id)}">
-      <div class="icon">${esc(app.icon || '📦')}</div>
+      <div class="icon">${icon(app.icon || app.category)}</div>
       <div>
         <h3>${esc(app.name)} ${badge}</h3>
         <p class="by">by ${esc(app.developer || 'Unknown developer')}</p>
@@ -138,7 +161,6 @@ function renderHome(apps, params) {
   const search = $('#search');
   const cat = params.get('cat');
   const view = params.get('view');
-  const categoriesEl = $('#categories');
   const featuredWrap = $('#featured-wrap');
   const featuredEl = $('#featured');
   const resultsWrap = $('#results-wrap');
@@ -147,15 +169,6 @@ function renderHome(apps, params) {
 
   search.value = params.get('q') || '';
 
-  categoriesEl.innerHTML = Object.entries(CATS).map(([key, c]) => {
-    const count = apps.filter((a) => a.category === key).length;
-    return `
-      <a class="cat-card" href="index.html?cat=${key}">
-        <span>${c.icon}</span>
-        <strong>${c.label}</strong>
-        <small>${count} ${count === 1 ? 'item' : 'items'}</small>
-      </a>`;
-  }).join('');
 
   featuredEl.innerHTML = apps.filter((a) => a.featured).map(appCard).join('');
 
@@ -163,7 +176,6 @@ function renderHome(apps, params) {
     const query = search.value.trim();
     const browsing = Boolean(query || cat || view);
 
-    categoriesEl.hidden = browsing;
     featuredWrap.hidden = browsing || !featuredEl.innerHTML.trim();
     resultsWrap.hidden = !browsing;
 
@@ -197,11 +209,11 @@ function renderView(apps, params) {
   }
 
   document.title = `${app.name} - STD App Store`;
-  const badge = app.verified ? '<span class="badge">✔ Verified</span>' : '';
+  const badge = app.verified ? `<span class="badge">${icon('check')} Verified</span>` : '';
 
   box.innerHTML = `
     <div class="detail-head">
-      <div class="icon big">${esc(app.icon || '📦')}</div>
+      <div class="icon big">${icon(app.icon || app.category)}</div>
       <div>
         <h1>${esc(app.name)} ${badge}</h1>
         <p class="meta">by ${esc(app.developer || 'Unknown developer')} · ${esc(CATS[app.category]?.label || '')}</p>
@@ -210,8 +222,8 @@ function renderView(apps, params) {
     </div>
 
     <div class="actions">
-      <button class="btn primary" id="open-btn">Open</button>
-      <button class="btn" id="how-btn">How to Download</button>
+      <button class="btn primary" id="open-btn">${icon('open')} Open</button>
+      <button class="btn" id="how-btn">${icon('download')} How to Download</button>
     </div>
 
     <div id="how" class="panel" hidden>
