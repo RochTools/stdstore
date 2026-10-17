@@ -37,7 +37,7 @@
   "name": "Profit Tracker",
   "category": "app",
   "icon": "icons/pro-tracker.svg",
-  "path": "",
+  "path": "https://pro-tracker.pages.dev/",
   "developer": "StepTuDeen",
   "tagline": "Track Your Weekly Earnings and Expenses",
   "version": "v1.0.0",
