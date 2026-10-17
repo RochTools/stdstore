@@ -559,7 +559,10 @@ function renderView(apps, params) {
     ${reviewsSkeleton()}
   `;
 
-  $('#open-btn').addEventListener('click', () => { window.location.href = app.path; });
+  $('#open-btn').addEventListener('click', () => {
+    if (!navigator.onLine) { netToast('No internet connection'); return; }
+    window.location.href = app.path;
+  });
 
   setupReviews(app);
 
@@ -585,21 +588,97 @@ function renderInfo(params) {
   `;
 }
 
+/* ── PWA + offline ── */
+function netToast(text) {
+  let t = document.getElementById('net-toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'net-toast';
+    t.className = 'net-toast';
+    document.body.appendChild(t);
+  }
+  t.textContent = text;
+  t.classList.add('show');
+  clearTimeout(netToast._t);
+  netToast._t = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+function setupPWA() {
+  const head = document.head;
+  if (!head.querySelector('link[rel="manifest"]')) {
+    const l = document.createElement('link'); l.rel = 'manifest'; l.href = 'manifest.webmanifest'; head.appendChild(l);
+  }
+  if (!head.querySelector('meta[name="theme-color"]')) {
+    const m = document.createElement('meta'); m.name = 'theme-color'; m.content = '#1b5e20'; head.appendChild(m);
+  }
+  if (!head.querySelector('link[rel="apple-touch-icon"]')) {
+    const l = document.createElement('link'); l.rel = 'apple-touch-icon'; l.href = 'icons/icon-192.png'; head.appendChild(l);
+  }
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch((e) => console.warn('Service worker failed', e));
+    });
+  }
+}
+
+function netErrorHTML(kind) {
+  const offline = kind === 'offline';
+  return `
+    <div class="net-error">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M1 1l22 22M16.7 11.1A11 11 0 0 1 22 14M5 12.9a11 11 0 0 1 5.2-2.7M8.5 16.4a6 6 0 0 1 7 0M12 20h.01M2 8.8a15 15 0 0 1 4.2-2.5M10.7 5.1A15 15 0 0 1 22 8.8"/>
+      </svg>
+      <h3>${offline ? 'No internet connection' : 'Something went wrong'}</h3>
+      <p>${offline ? 'Please check your internet connection and try again.' : 'The store could not load right now. Please try again.'}</p>
+      <button type="button" class="net-retry">Try again</button>
+    </div>`;
+}
+
+function showNetError(box, kind) {
+  box.innerHTML = netErrorHTML(kind);
+  const btn = box.querySelector('.net-retry');
+  btn.addEventListener('click', () => {
+    if (!navigator.onLine) { netToast('Still no internet connection'); return; }
+    location.reload();
+  });
+}
+
 /* ── Boot ── */
 (async function init() {
   setupMenu();
+  setupPWA();
   const page   = document.body.dataset.page;
   const params = new URLSearchParams(location.search);
+
+  // اوپن ایپ بٹن (index.html میں پیسٹ کیے گئے کارڈ) — انٹرنیٹ نہ ہو تو ایرر دکھائیں
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a.open-btn');
+    if (a && !navigator.onLine) { e.preventDefault(); netToast('No internet connection'); }
+  });
+  window.addEventListener('offline', () => netToast('You are offline'));
 
   if (page === 'info') { renderInfo(params); return; }
 
   let apps = [];
+  let loadError = null;
   try {
-    const res  = await fetch('apps.json', { cache: 'no-cache' });
+    const res = await fetch('apps.json', { cache: 'no-cache' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
     apps = data.apps || [];
   } catch (err) {
     console.error('Could not load apps.json', err);
+    loadError = err instanceof TypeError ? 'offline' : 'server';   // TypeError = نیٹ ورک نہیں
+  }
+
+  if (loadError) {
+    const box = page === 'home' ? $('#app-list') : $('#detail');
+    const title = $('#section-title');
+    if (title) title.hidden = true;
+    if (box) showNetError(box, loadError);
+    // انٹرنیٹ واپس آتے ہی خود دوبارہ لوڈ
+    window.addEventListener('online', () => location.reload());
+    return;
   }
 
   if (page === 'home') renderHome(apps, params);
