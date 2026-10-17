@@ -10,42 +10,72 @@
 
   <header class="topbar">
     <div class="top-row">
-      <button class="menu-btn" id="menu-btn" aria-label="Open menu"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
-      <a class="brand" href="index.html">STD App Store</a>
+      <div class="brand-row">
+        <img src="icons/store.svg" class="store-logo" alt="">
+        <div class="brand-text">
+          <span class="brand-name">STD App Store</span>
+          <span class="brand-sub">Open Source Web Apps</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" id="menu-btn" aria-label="Open menu">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
     </div>
 
-    <nav class="side-menu" id="side-menu">
-      <a href="index.html?cat=app">App</a>
-      <a href="index.html?cat=tool">Tool</a>
-      <a href="index.html?cat=game">Game</a>
-      <a href="index.html?view=foryou">Signature For You</a>
-      <hr>
-      <a href="info.html?p=about">About</a>
-      <a href="info.html?p=privacy">Privacy</a>
-      <a href="info.html?p=contact">Contact Us</a>
-      <a href="info.html?p=disclaimer">Disclaimer</a>
-    </nav>
-
     <div class="search-wrap">
-      <input id="search" type="search" placeholder="Search apps, tools, games..." autocomplete="off">
+      <div class="search-inner">
+        <svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input id="search" type="search" placeholder="Search apps, tools, games..." autocomplete="off">
+      </div>
+    </div>
+
+    <div class="chips-wrap" id="chips-wrap">
+      <a class="chip" data-cat="" href="index.html">All</a>
+      <a class="chip" data-cat="app" href="index.html?cat=app">App</a>
+      <a class="chip" data-cat="tool" href="index.html?cat=tool">Tool</a>
+      <a class="chip" data-cat="game" href="index.html?cat=game">Game</a>
+      <a class="chip" data-view="foryou" href="index.html?view=foryou">Signature For You</a>
     </div>
   </header>
 
+  <nav class="side-menu" id="side-menu">
+    <a href="index.html?cat=app">App</a>
+    <a href="index.html?cat=tool">Tool</a>
+    <a href="index.html?cat=game">Game</a>
+    <a href="index.html?view=foryou">Signature For You</a>
+    <hr>
+    <a href="info.html?p=about">About</a>
+    <a href="info.html?p=privacy">Privacy</a>
+    <a href="info.html?p=contact">Contact Us</a>
+    <a href="info.html?p=disclaimer">Disclaimer</a>
+  </nav>
+  <div class="overlay" id="overlay"></div>
+
   <main>
     <h2 class="section-title" id="section-title" hidden></h2>
-
-    <a class="strip" href="index.html?view=foryou">Signature For You</a>
-
-    <section id="featured-wrap" hidden>
-      <h2 class="section-title">Signature For You</h2>
-      <div id="featured" class="grid"></div>
-    </section>
-
-    <section id="results-wrap" hidden>
-      <div id="grid" class="grid"></div>
-    </section>
+    <div id="app-list" class="app-list"></div>
   </main>
 
+  <nav class="bottom-nav">
+    <a href="index.html" class="bnav-item active" id="bnav-home">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="index.html?cat=app" class="bnav-item">
+      <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span>Categories</span>
+    </a>
+    <a href="#" class="bnav-item" id="bnav-search">
+      <svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <span>Search</span>
+    </a>
+    <a href="info.html?p=about" class="bnav-item">
+      <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <span>About</span>
+    </a>
+  </nav>
 
   <script src="script.js"></script>
 </body>

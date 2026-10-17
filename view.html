@@ -3,15 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>App - STD App Store</title>
+  <title>App — STD App Store</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="view">
 
-  <header class="topbar">
-    <div class="top-row">
-      <a class="back" href="index.html" aria-label="Back to store"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
-      <a class="brand" href="index.html">STD App Store</a>
+  <header class="detail-topbar">
+    <a class="icon-btn back" href="javascript:history.back()" aria-label="Back">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </a>
+    <div class="detail-topbar-actions">
+      <button class="icon-btn" id="share-btn" aria-label="Share">
+        <svg class="ico" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      </button>
     </div>
   </header>
 
@@ -19,7 +23,15 @@
     <div id="detail"></div>
   </main>
 
-
   <script src="script.js"></script>
+  <script>
+    document.getElementById('share-btn').addEventListener('click', () => {
+      if (navigator.share) {
+        navigator.share({ title: document.title, url: location.href });
+      } else {
+        navigator.clipboard && navigator.clipboard.writeText(location.href);
+      }
+    });
+  </script>
 </body>
 </html>

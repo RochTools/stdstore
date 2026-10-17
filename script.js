@@ -1,5 +1,5 @@
 const CATS = {
-  app:  { label: 'App',  icon: 'app' },
+  app:  { label: 'App',  icon: 'app'  },
   tool: { label: 'Tool', icon: 'tool' },
   game: { label: 'Game', icon: 'game' },
 };
@@ -23,7 +23,7 @@ const INFO = {
     title: 'Contact Us',
     body: [
       'For listing requests, bug reports or questions, write to us at:',
-      '<span class="contact">contact@example.com</span>',
+      '<span class="contact-email">contact@example.com</span>',
     ],
   },
   disclaimer: {
@@ -58,18 +58,21 @@ const HOW_TO_HTML = `
 `;
 
 const ICONS = {
-  menu: '<path d="M3 6h18M3 12h18M3 18h18"/>',
-  back: '<path d="M19 12H5M12 19l-7-7 7-7"/>',
-  check: '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.8"/>',
-  open: '<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
+  menu:     '<path d="M3 6h18M3 12h18M3 18h18"/>',
+  back:     '<path d="M19 12H5M12 19l-7-7 7-7"/>',
+  check:    '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.8"/>',
+  open:     '<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
   download: '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',
-  car: '<path d="M5 16v-4l2-5h10l2 5v4M3 12h18v4H3zM7 16v2M17 16v2"/><circle cx="7.5" cy="13.5" r="0.6"/><circle cx="16.5" cy="13.5" r="0.6"/>',
-  calc: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h1.5M12.5 12h1.5M8 16h1.5M12.5 16h1.5"/>',
-  snake: '<rect x="2" y="7" width="20" height="10" rx="5"/><path d="M7 12h4M9 10v4M15 13h.01M17.5 11h.01"/>',
-  app: '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/>',
-  tool: '<path d="M14.7 6.3a4 4 0 0 0 5 5l-8.4 8.4a2.8 2.8 0 0 1-4-4z"/>',
-  game: '<rect x="2" y="7" width="20" height="10" rx="5"/><path d="M7 12h4M9 10v4M15 13h.01M17.5 11h.01"/>',
-  box: '<rect x="3" y="3" width="18" height="18" rx="3"/>',
+  search:   '<circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>',
+  share:    '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>',
+  globe:    '<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
+  code:     '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
+  shield:   '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+  app:      '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/>',
+  tool:     '<path d="M14.7 6.3a4 4 0 0 0 5 5l-8.4 8.4a2.8 2.8 0 0 1-4-4z"/>',
+  game:     '<rect x="2" y="7" width="20" height="10" rx="5"/><path d="M7 12h4M9 10v4M15 13h.01M17.5 11h.01"/>',
+  box:      '<rect x="3" y="3" width="18" height="18" rx="3"/>',
+  arrow:    '<polyline points="9 18 15 12 9 6"/>',
 };
 
 function icon(name, cls = 'ico') {
@@ -88,27 +91,28 @@ function esc(value) {
   }[c]));
 }
 
-/* ---------- Menu ---------- */
+/* ── Menu ── */
 function setupMenu() {
-  const btn = $('#menu-btn');
-  const menu = $('#side-menu');
+  const btn     = $('#menu-btn');
+  const menu    = $('#side-menu');
+  const overlay = $('#overlay');
   if (!btn || !menu) return;
-  btn.addEventListener('click', () => menu.classList.toggle('open'));
-  menu.querySelectorAll('a').forEach((a) =>
-    a.addEventListener('click', () => menu.classList.remove('open'))
-  );
+
+  const open  = () => { menu.classList.add('open');    overlay && overlay.classList.add('show'); };
+  const close = () => { menu.classList.remove('open'); overlay && overlay.classList.remove('show'); };
+
+  btn.addEventListener('click', open);
+  overlay && overlay.addEventListener('click', close);
+  menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
 }
 
-/* ---------- Search and ranking ---------- */
+/* ── Search scoring ── */
 function scoreApp(app, tokens) {
-  const name = app.name.toLowerCase();
+  const name     = app.name.toLowerCase();
   const keywords = (app.keywords || []).join(' ').toLowerCase();
-  const desc = `${app.short || ''} ${app.description || ''}`.toLowerCase();
-  const cat = (CATS[app.category]?.label || '').toLowerCase();
-
-  let score = 0;
-  let matchedAll = true;
-
+  const desc     = `${app.short || ''} ${app.description || ''}`.toLowerCase();
+  const cat      = (CATS[app.category]?.label || '').toLowerCase();
+  let score = 0, matchedAll = true;
   for (const t of tokens) {
     let hit = false;
     if (name.includes(t))     { score += 5; hit = true; }
@@ -117,18 +121,15 @@ function scoreApp(app, tokens) {
     if (desc.includes(t))     { score += 1; hit = true; }
     if (!hit) matchedAll = false;
   }
-
-  // Apps that match every word rank above partial matches
   if (matchedAll && score > 0) score += 4;
   return score;
 }
 
 function filterApps(apps, query, cat, view) {
   let list = apps;
-  if (cat) list = list.filter((a) => a.category === cat);
+  if (cat)  list = list.filter((a) => a.category === cat);
   if (view === 'foryou') list = list.filter((a) => a.featured);
   if (!query) return list;
-
   const tokens = query.toLowerCase().split(/\s+/).filter(Boolean);
   return list
     .map((app) => ({ app, score: scoreApp(app, tokens) }))
@@ -141,142 +142,237 @@ function filterApps(apps, query, cat, view) {
     .map((x) => x.app);
 }
 
-/* ---------- Cards ---------- */
-function appCard(app) {
-  const badge = app.verified ? `<span class="badge">${icon('check')} Verified</span>` : '';
+/* ── App list item (vertical list style) ── */
+function appListItem(app) {
+  const ratingHTML = app.rating
+    ? `<span class="stars"><span class="star-val">★</span> ${app.rating} (${app.reviewCount || 0})</span>`
+    : '';
+  const ossHTML = app.verified
+    ? `<span class="badge-os">${icon('check')} Open Source</span>`
+    : '';
   return `
-    <a class="card" href="view.html?id=${encodeURIComponent(app.id)}">
-      <div class="icon">${icon(app.icon || app.category)}</div>
-      <div>
-        <h3>${esc(app.name)} ${badge}</h3>
-        <p class="by">by ${esc(app.developer || 'Unknown developer')}</p>
-        <p>${esc(app.short || '')}</p>
-        <span class="tag">${esc(CATS[app.category]?.label || app.category)}</span>
+    <a class="app-item" href="view.html?id=${encodeURIComponent(app.id)}">
+      <div class="app-icon">${icon(app.icon || app.category)}</div>
+      <div class="app-info">
+        <div class="app-name">${esc(app.name)}</div>
+        <div class="app-desc">${esc(app.short || '')}</div>
+        <div class="app-meta">${ratingHTML}${ossHTML}</div>
       </div>
+      <span class="app-arrow">${icon('arrow')}</span>
     </a>`;
 }
 
-/* ---------- Home page ---------- */
+/* ── Home page ── */
 function renderHome(apps, params) {
   const search = $('#search');
-  const cat = params.get('cat');
-  const view = params.get('view');
-  const featuredWrap = $('#featured-wrap');
-  const featuredEl = $('#featured');
-  const resultsWrap = $('#results-wrap');
-  const grid = $('#grid');
-  const title = $('#section-title');
+  const cat    = params.get('cat');
+  const view   = params.get('view');
+  const list   = $('#app-list');
+  const title  = $('#section-title');
+
+  // Mark active chip
+  document.querySelectorAll('.chip').forEach((chip) => {
+    const chipCat  = chip.dataset.cat;
+    const chipView = chip.dataset.view;
+    const active =
+      (chipCat === '' && !cat && !view) ||
+      (chipCat  && chipCat  === cat)   ||
+      (chipView && chipView === view);
+    chip.classList.toggle('active', !!active);
+  });
 
   search.value = params.get('q') || '';
 
-
-  featuredEl.innerHTML = apps.filter((a) => a.featured).map(appCard).join('');
-
   const render = () => {
     const query = search.value.trim();
-    const browsing = Boolean(query || cat || view);
 
-    featuredWrap.hidden = browsing || !featuredEl.innerHTML.trim();
-    resultsWrap.hidden = !browsing;
-
-    if (browsing) {
-      if (query) title.textContent = `Results for "${query}"`;
-      else if (view === 'foryou') title.textContent = 'Signature For You';
-      else if (cat) title.textContent = CATS[cat]?.label || 'Browse';
+    if (query) {
+      title.textContent = `Results for "${query}"`;
       title.hidden = false;
-
-      const list = filterApps(apps, query, cat, view);
-      grid.innerHTML = list.length
-        ? list.map(appCard).join('')
-        : '<p class="empty">No results found. Try a different word.</p>';
+    } else if (view === 'foryou') {
+      title.textContent = 'Signature For You';
+      title.hidden = false;
+    } else if (cat) {
+      title.textContent = CATS[cat]?.label || 'Browse';
+      title.hidden = false;
     } else {
       title.hidden = true;
     }
+
+    const filtered = filterApps(apps, query, cat, view);
+    list.innerHTML = filtered.length
+      ? filtered.map(appListItem).join('')
+      : '<p class="empty">No results found. Try a different word.</p>';
   };
 
   search.addEventListener('input', render);
   render();
+
+  // Bottom nav search shortcut
+  const searchNav = $('#bnav-search');
+  if (searchNav) {
+    searchNav.addEventListener('click', (e) => {
+      e.preventDefault();
+      search.focus();
+      search.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
 }
 
-/* ---------- Detail page ---------- */
+/* ── Detail page ── */
 function renderView(apps, params) {
   const box = $('#detail');
   const app = apps.find((a) => a.id === params.get('id'));
 
   if (!app) {
-    box.innerHTML = '<p class="empty">This app was not found. <a href="index.html">Back to the store</a></p>';
+    box.innerHTML = '<p class="empty">App not found. <a href="index.html">Back to store</a></p>';
     return;
   }
 
-  document.title = `${app.name} - STD App Store`;
-  const badge = app.verified ? `<span class="badge">${icon('check')} Verified</span>` : '';
+  document.title = `${app.name} — STD App Store`;
+
+  /* Stats row */
+  const statsHTML = app.rating ? `
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-value"><span class="stat-star">★</span> ${app.rating}</div>
+        <div class="stat-label">${(app.reviewCount || 0).toLocaleString()} reviews</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">${esc(app.downloads || 'Free')}</div>
+        <div class="stat-label">Downloads</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" style="font-size:13px">${esc(app.updated || 'Recent')}</div>
+        <div class="stat-label">Last Updated</div>
+      </div>
+    </div>` : '';
+
+  /* Features carousel */
+  const features = app.features || [];
+  const featuresHTML = features.length ? `
+    <div class="feature-section">
+      <div class="sec-head">Features</div>
+      <div class="feature-scroll">
+        ${features.map((f) => `
+          <div class="feat-card">
+            ${icon(app.category)}
+            <div class="feat-title">${esc(f.title)}</div>
+            <div class="feat-sub">${esc(f.sub || '')}</div>
+          </div>`).join('')}
+      </div>
+    </div>` : '';
+
+  /* Tags */
+  const tagList    = app.tags || [];
+  const tagsHTML   = tagList.length
+    ? `<div class="tags-wrap">${tagList.map((t) => `<span class="tag-chip">${esc(t)}</span>`).join('')}</div>`
+    : '';
+
+  /* Ratings bar chart */
+  const ratingHTML = app.rating ? `
+    <div class="ratings-section">
+      <div class="ratings-header">
+        <div class="sec-head" style="margin:0">Ratings &amp; Reviews</div>
+        <span class="see-all">See all</span>
+      </div>
+      <div class="rating-big">
+        <div>
+          <div class="rating-num">${app.rating}</div>
+          <div class="rating-stars">★★★★★</div>
+          <div class="rating-count">${(app.reviewCount || 0).toLocaleString()} reviews</div>
+        </div>
+        <div class="rating-bars">
+          ${[5,4,3,2,1].map((n) => {
+            const pct = n===5?80 : n===4?12 : n===3?5 : n===2?2 : 1;
+            return `<div class="bar-row">
+              <span>${n}★</span>
+              <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>
+    </div>` : '';
 
   box.innerHTML = `
-    <div class="detail-head">
-      <div class="icon big">${icon(app.icon || app.category)}</div>
-      <div>
-        <h1>${esc(app.name)} ${badge}</h1>
-        <p class="meta">by ${esc(app.developer || 'Unknown developer')} · ${esc(CATS[app.category]?.label || '')}</p>
-        <p>${esc(app.short || '')}</p>
+    <div class="detail-hero">
+      <div class="detail-icon">${icon(app.icon || app.category)}</div>
+      <div class="detail-hero-info">
+        <div class="detail-name">${esc(app.name)}</div>
+        <div class="detail-version">${app.version ? esc(app.version) + (app.size ? '&nbsp;&nbsp;|&nbsp;&nbsp;' + esc(app.size) : '') : ''}</div>
+        <div class="detail-badges">
+          ${app.verified ? `<span class="dbadge green">${icon('check')} Open Source</span>` : ''}
+          <span class="dbadge gray">Free</span>
+        </div>
+        <div class="detail-tagline">${esc(app.tagline || '')}</div>
       </div>
     </div>
 
-    <div class="actions">
-      <button class="btn primary" id="open-btn">${icon('open')} Open</button>
-      <button class="btn" id="how-btn">${icon('download')} How to Download</button>
+    ${statsHTML}
+
+    <div class="install-wrap">
+      <button class="btn-install" id="open-btn">
+        ${icon('open')} Open App
+      </button>
+      <button class="btn-how-text" id="how-btn">How to Add to Home Screen ▾</button>
+      <div id="how" class="how-panel" hidden>${HOW_TO_HTML}</div>
     </div>
 
-    <div id="how" class="panel" hidden>
-      <h2>How to download this app</h2>
-      <p>The app runs in your browser. To keep it on your phone or computer, add it to your home screen:</p>
-      ${HOW_TO_HTML}
+    ${featuresHTML}
+
+    <div class="about-section">
+      <div class="sec-head">About</div>
+      <p class="about-text">${esc(app.description || app.short || '')}</p>
+      ${tagsHTML}
     </div>
 
-    <section class="about-app">
-      <h2>About this app</h2>
-      <p>${esc(app.description || '')}</p>
-      ${app.source ? `<p>Source: <a href="${esc(app.source)}" target="_blank" rel="noopener">${esc(app.source)}</a></p>` : ''}
-    </section>
+    <div class="info-table-section">
+      ${app.developer    ? `<div class="info-row"><div class="info-label">Developer</div><div class="info-value">${esc(app.developer)}</div></div>` : ''}
+      ${app.source       ? `<div class="info-row"><div class="info-label">Source Code</div><div class="info-value"><a href="${esc(app.source)}" target="_blank" rel="noopener">${esc(app.source.replace('https://',''))}</a></div></div>` : ''}
+      ${app.website      ? `<div class="info-row"><div class="info-label">Website</div><div class="info-value"><a href="${esc(app.website)}" target="_blank" rel="noopener">${esc(app.website.replace(/^https?:\/\//,''))}</a></div></div>` : ''}
+      ${app.license      ? `<div class="info-row"><div class="info-label">License</div><div class="info-value">${esc(app.license)}</div></div>` : ''}
+      <div class="info-row"><div class="info-label">Category</div><div class="info-value">${esc(CATS[app.category]?.label || app.category)}</div></div>
+      ${app.compatibility ? `<div class="info-row"><div class="info-label">Compatibility</div><div class="info-value">${esc(app.compatibility)}</div></div>` : ''}
+    </div>
+
+    ${ratingHTML}
   `;
 
-  const how = $('#how');
+  $('#open-btn').addEventListener('click', () => { window.location.href = app.path; });
 
-  $('#open-btn').addEventListener('click', () => {
-    window.location.href = app.path;
-  });
-
-  $('#how-btn').addEventListener('click', () => {
+  const how    = $('#how');
+  const howBtn = $('#how-btn');
+  howBtn.addEventListener('click', () => {
     how.hidden = !how.hidden;
+    howBtn.textContent = how.hidden
+      ? 'How to Add to Home Screen ▾'
+      : 'How to Add to Home Screen ▴';
     if (!how.hidden) how.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 }
 
-/* ---------- Info pages ---------- */
+/* ── Info pages ── */
 function renderInfo(params) {
-  const key = INFO[params.get('p')] ? params.get('p') : 'about';
+  const key  = INFO[params.get('p')] ? params.get('p') : 'about';
   const data = INFO[key];
-  document.title = `${data.title} - STD App Store`;
+  document.title = `${data.title} — STD App Store`;
   $('#info').innerHTML = `
     <h1>${esc(data.title)}</h1>
     ${data.body.map((p) => `<p>${p.includes('<span') ? p : esc(p)}</p>`).join('')}
   `;
 }
 
-/* ---------- Boot ---------- */
+/* ── Boot ── */
 (async function init() {
   setupMenu();
-
-  const page = document.body.dataset.page;
+  const page   = document.body.dataset.page;
   const params = new URLSearchParams(location.search);
 
-  if (page === 'info') {
-    renderInfo(params);
-    return;
-  }
+  if (page === 'info') { renderInfo(params); return; }
 
   let apps = [];
   try {
-    const res = await fetch('apps.json', { cache: 'no-cache' });
+    const res  = await fetch('apps.json', { cache: 'no-cache' });
     const data = await res.json();
     apps = data.apps || [];
   } catch (err) {

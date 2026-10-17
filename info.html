@@ -3,20 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>STD App Store</title>
+  <title>Info — STD App Store</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="info">
 
-  <header class="topbar">
-    <div class="top-row">
-      <a class="back" href="index.html" aria-label="Back to store"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
-      <a class="brand" href="index.html">STD App Store</a>
-    </div>
+  <header class="detail-topbar">
+    <a class="icon-btn back" href="javascript:history.back()" aria-label="Back">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </a>
+    <span class="brand-name" style="font-size:16px">STD App Store</span>
+    <div style="width:40px"></div>
   </header>
 
-  <main class="info" id="info"></main>
-
+  <main>
+    <div class="info-page-wrap">
+      <div id="info"></div>
+    </div>
+  </main>
 
   <script src="script.js"></script>
 </body>
