@@ -30,6 +30,35 @@
       "verified": true,
       "featured": true,
       "source": "https://github.com/RochTools/steptudeen"
+      },
+    {
+      "id": "rochtools",
+      "name": "RochTools",
+      "category": "tool",
+      "icon": "icons/rochtools.png",
+      "path": "https://rochtools.github.io/tool/index.html",
+      "developer": "RochTools",
+      "tagline": "Free tools for creators",
+      "version": "v1.0.0",
+      "size": "Web App",
+      "updated": "Oct 2026",
+      "website": "https://rochtools.github.io/tool/index.html",
+      "license": "Free to use",
+      "compatibility": "Web App (Android, iOS, Desktop)",
+      "tags": ["Tools", "Creators", "Free", "No Sign-up", "Privacy", "Offline Support"],
+      "features": [
+        { "title": "Video Downloader",   "sub": "HD, no watermark"        },
+        { "title": "Password Generator", "sub": "Strong and secure"       },
+        { "title": "QR Code",            "sub": "Generate and scan"       },
+        { "title": "Word Counter",       "sub": "Text analysis"           },
+        { "title": "Color Picker",       "sub": "HEX, RGB and HSL"        },
+        { "title": "Base64",             "sub": "Encode and decode"       }
+      ],
+      "short": "Free browser-based tools for creators: video downloader, password generator, QR code, word counter, color picker and Base64.",
+      "description": "RochTools is a collection of professional tools designed for creators. All tools run entirely in your browser with zero data upload to any server. Everything is free and needs no sign-up.\n\nVideo Downloader: download HD videos from popular platforms without watermarks.\n\nPassword Generator: create strong passwords with adjustable length, multiple character types and a strength meter.\n\nQR Code Generator and Scanner: create QR codes from text or URLs, and scan them from images or the camera.\n\nWord Counter: count words, characters and sentences, with reading time and keyword frequency.\n\nColor Picker: pick colors and copy HEX, RGB and HSL codes, with a history of your last 20 colors.\n\nBase64 Encoder/Decoder: convert text and files to Base64 and decode them back.",
+      "keywords": ["rochtools", "tools", "video downloader", "password generator", "qr code", "word counter", "color picker", "base64", "creator", "free"],
+      "verified": false,
+      "featured": true
     }
   ]
 }
