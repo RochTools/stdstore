@@ -16,7 +16,7 @@ jobs:
       GH_TOKEN: ${{ github.token }}
       GH_REPO: ${{ github.repository }}
       ISSUE_NUMBER: ${{ github.event.issue.number }}
-      RESULT_FILE: ${{ runner.temp }}/result.md
+      RESULT_FILE: /tmp/app-result.md
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
