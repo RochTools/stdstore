@@ -1,0 +1,91 @@
+{
+  "name": "Profit Tracker",
+  "icon": "icons/pro-tracker.svg",
+  "path": "",
+  "developer": "StepTuDeen",
+  "tagline": "Track Your Weekly Earnings and Expenses",
+  "version": "v1.0.0",
+  "size": "Web App",
+  "updated": "Oct 2026",
+  "website": "https://pro-tracker.pages.dev/",
+  "license": "Free to use",
+  "compatibility": "Web App (Android, iOS, Desktop)",
+  "tags": [
+    "Profit Tracker",
+    "Expense Tracker",
+    "Income Tracker",
+    "Weekly Report",
+    "Productivity",
+    "Personal Finance",
+    "Offline Storage",
+    "Notebook"
+  ],
+  "features": [
+    {
+      "title": "Weekly Income Tracking",
+      "sub": "Record your daily earnings and keep track of your total income throughout the week."
+    },
+    {
+      "title": "Expense Tracking",
+      "sub": "Enter your daily expenses to monitor how much you spend during the week."
+    },
+    {
+      "title": "Automatic pro Profit Calculation",
+      "sub": "Automatically calculates your total income, total expenses, and net profit or loss."
+    },
+    {
+      "title": "Weekly Summary",
+      "sub": "View a complete summary of your weekly earnings, expenses, and overall financial performance."
+    },
+    {
+      "title": "Weekly Charts",
+      "sub": "Visualize your income, expenses, and profit through clear and easy-to-understand charts."
+    },
+    {
+      "title": "Built-in Notebook",
+      "sub": "Write, save, and manage personal notes directly inside the app."
+    },
+    {
+      "title": "Date-Based Records",
+      "sub": "Organize your financial entries by month and date for easy tracking and reference."
+    },
+    {
+      "title": "Local Data Storage",
+      "sub": "Saves your records and notes in your browser's local storage without requiring an online account."
+    },
+    {
+      "title": "Simple and User-Friendly Interface",
+      "sub": "Manage your income, expenses, notes, and weekly reports from one convenient interface."
+    },
+    {
+      "title": "Free to Use",
+      "sub": "Track your earnings and expenses without subscription fees."
+    }
+  ],
+  "short": "Profit Tracker is a simple and free web app that helps you record weekly income and expenses, calculate your net profit or loss, view financial charts, and save personal notes. All records are stored locally in your browser and organized by date and month.",
+  "description": "Profit Tracker is a lightweight personal finance and productivity web app developed by StepTuDeen. It helps users keep track of their weekly earnings, expenses, and overall profit or loss in one convenient place.\n\nSimply enter how much you earn and spend each day. The app automatically calculates your total income, total expenses, and net profit or loss as you update your records throughout the week. This makes it easier to understand your financial activity without performing manual calculations.\n\nThe app also includes weekly charts that provide a visual overview of your earnings, spending, and financial performance. These charts help you compare income and expenses and understand how your money is being managed over time.\n\nA built-in notebook allows you to write and save important notes, reminders, and other information alongside your daily financial activities.\n\nYour records are organized by month and date, making it easier to review previous entries and keep your financial history organized. The app uses your browser's local storage to save your data directly on your device, so an online account or remote database is not required for local record keeping.\n\nProfit Tracker is designed for freelancers, small business owners, online earners, shopkeepers, students, and anyone who wants a simple way to monitor personal earnings and expenses.\n\nKey Benefits:\n- Track daily income and expenses throughout the week.\n- Automatically calculate total earnings, expenses, and net profit or loss.\n- View weekly financial summaries and charts.\n- Write and save notes in the built-in notebook.\n- Keep records organized by month and date.\n- Store data locally in your browser.\n- Use the app on compatible mobile phones, tablets, and desktop devices.\n- Manage your basic financial records with a simple and free web app.\n\nPrivacy Note: Financial records are stored locally in the browser. Clearing browser data, uninstalling an associated web app, or changing devices may affect access to saved records. Use an appropriate backup method if you need to preserve your data.\n\nProfit Tracker is a practical tool for everyday financial record keeping. It is intended for tracking purposes and does not provide professional accounting, tax, or investment advice.",
+  "keywords": [
+    "Profit Tracker",
+    "income tracker",
+    "expense tracker",
+    "weekly profit calculator",
+    "weekly earnings tracker",
+    "daily income tracker",
+    "daily expense manager",
+    "profit and loss tracker",
+    "personal finance app",
+    "small business expense tracker",
+    "freelancer income tracker",
+    "financial record keeping",
+    "weekly financial report",
+    "income and expense charts",
+    "local storage finance app",
+    "offline expense tracker",
+    "browser-based finance app",
+    "digital notebook",
+    "StepTuDeen"
+  ],
+  "verified": true,
+  "featured": true,
+  "source": "https://github.com/RochTools/profit"
+}

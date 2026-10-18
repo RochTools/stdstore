@@ -1,0 +1,64 @@
+{
+  "name": "StepTuDeen",
+  "icon": "icons/steptudeen.png",
+  "path": "https://steptudeen.pages.dev/",
+  "developer": "StepTuDeen",
+  "tagline": "A tap towards deen",
+  "version": "v0.1.0",
+  "size": "Web App",
+  "downloads": "10",
+  "updated": "Oct 2026",
+  "rating": 4.8,
+  "reviewCount": 3,
+  "website": "https://steptudeen.blogspot.com",
+  "license": "MIT License",
+  "compatibility": "Web App (Android, iOS, Desktop)",
+  "tags": [
+    "Islamic",
+    "Quran",
+    "Hadith",
+    "Prayer Times",
+    "Masjid",
+    "Open Source",
+    "PWA",
+    "Offline Support"
+  ],
+  "features": [
+    {
+      "title": "Quran",
+      "sub": "with Urdu Translation"
+    },
+    {
+      "title": "Hadith",
+      "sub": "Authentic Books"
+    },
+    {
+      "title": "Prayer Times",
+      "sub": "for Your Location"
+    },
+    {
+      "title": "Masjid Dashboard",
+      "sub": "Manage Your Masjid"
+    }
+  ],
+  "short": "An Islamic digital platform bringing together the Quran, Hadith, prayer times and mosque services.",
+  "description": "StepTuDeen is a free, open source Islamic web app. It aims to make the Quran, Hadith and everyday religious needs available in one place. The app is currently in its experimental stage.\n\nHoly Quran: full recitation, translations in Urdu and other languages, Tafsir Ibn Kathir, offline reading, last-read ayah saving and search.\n\nHadith Books: Sahih al-Bukhari, Sahih Muslim, Jami at-Tirmidhi, Sunan Abi Dawud, Sunan Ibn Majah, Sunan an-Nasai, Riyad as-Salihin, Muwatta Imam Malik and Al-Adab al-Mufrad, with grading labels.\n\nPrayer Times: five daily prayers, countdown to the next prayer, nearby mosques, Friday times and Adhan/Iqamah notifications. Imam Dashboard for mosque registration and timing settings.\n\nOther features: Qibla direction, duas and adhkar, digital tasbih, and saved favourite surahs and Hadith bookmarks.",
+  "keywords": [
+    "StepTuDeen",
+    "steptudeen",
+    "quran",
+    "hadith",
+    "prayer",
+    "adhan",
+    "mosque",
+    "qibla",
+    "tasbih",
+    "islam",
+    "قرآن",
+    "حدیث",
+    "نماز"
+  ],
+  "verified": true,
+  "featured": true,
+  "source": "https://github.com/RochTools/steptudeen"
+}

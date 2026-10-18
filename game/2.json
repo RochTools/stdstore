@@ -1,0 +1,97 @@
+{
+  "name": "The Mill Game",
+  "icon": "icons/mill-game.png",
+  "path": "https://rochtools.github.io/the-mill-game/",
+  "developer": "StepTuDeen",
+  "tagline": "Think Ahead. Form Your Mills. Win the Match.",
+  "version": "v2.1.0",
+  "size": "Web App",
+  "updated": "Oct 2026",
+  "website": "https://rochtools.github.io/the-mill-game/",
+  "license": "Open Source - See Repository",
+  "compatibility": "Web App (Android, iOS, Desktop)",
+  "tags": [
+    "Nine Men's Morris",
+    "Board Game",
+    "Strategy Game",
+    "Offline Game",
+    "Online Multiplayer",
+    "Voice Chat",
+    "Progressive Web App",
+    "Two Player Game",
+    "StepTuDeen"
+  ],
+  "features": [
+    {
+      "title": "Play Against the Computer",
+      "sub": "Challenge the computer in an offline Nine Men's Morris strategy game."
+    },
+    {
+      "title": "Offline Two-Player Mode",
+      "sub": "Play with a friend on the same device without an internet connection."
+    },
+    {
+      "title": "Online Multiplayer",
+      "sub": "Play real-time matches with another player over the internet."
+    },
+    {
+      "title": "Real-Time Voice Chat",
+      "sub": "Communicate with your opponent through WebRTC-based voice chat during online matches."
+    },
+    {
+      "title": "In-Game Text Messaging",
+      "sub": "Send text messages to other participants during online matches."
+    },
+    {
+      "title": "Emoji Reactions",
+      "sub": "Express yourself with emoji reactions while playing online."
+    },
+    {
+      "title": "Spectator Mode",
+      "sub": "Allow up to two spectators to watch an online match and interact through supported communication features."
+    },
+    {
+      "title": "Fair Spectator Experience",
+      "sub": "Spectators can observe the board but cannot move pieces or interfere with gameplay."
+    },
+    {
+      "title": "Progressive Web App",
+      "sub": "Install the game through supported browsers for an app-like experience on mobile and desktop."
+    },
+    {
+      "title": "Offline Support",
+      "sub": "Play supported game modes offline using the game's available local functionality."
+    },
+    {
+      "title": "Strategic Gameplay",
+      "sub": "Form mills by aligning three pieces, remove eligible opponent pieces, and block your opponent to gain an advantage."
+    },
+    {
+      "title": "Mobile and Desktop Support",
+      "sub": "Play on compatible mobile phones, tablets, and desktop browsers."
+    }
+  ],
+  "short": "The Mill Game is a feature-rich Nine Men's Morris strategy game by StepTuDeen. Play against the computer, challenge a friend offline, or compete online with real-time voice chat, text messaging, emoji reactions, and spectator mode. Install it as a Progressive Web App on supported devices.",
+  "description": "The Mill Game is a modern web-based version of the classic Nine Men's Morris board game, developed by StepTuDeen. It combines traditional strategy gameplay with offline modes, online multiplayer, real-time communication, and Progressive Web App support.\n\nGAME MODES\nChoose between playing against the computer, playing with a friend on the same device, or competing against another player online. Offline game modes are designed to work without an internet connection, subject to the game's available local functionality.\n\nONLINE MULTIPLAYER\nChallenge another player in real-time online matches. Players can communicate using WebRTC-based voice chat, exchange text messages, and react with emojis during gameplay. Online features require an internet connection and the relevant service configuration.\n\nSPECTATOR MODE\nUp to two spectators can join an online match and watch the game in progress. Supported voice and text communication features allow spectators to interact with participants, while spectators remain unable to move pieces or interfere with the board.\n\nCLASSIC NINE MEN'S MORRIS STRATEGY\nPlace and move pieces strategically to form mills by aligning three pieces. Forming a mill allows a player to remove an eligible opponent piece according to the game rules. Block the opponent's possible moves and plan each move carefully to secure victory.\n\nPROGRESSIVE WEB APP\nThe game supports installation through compatible browsers and includes a web app manifest, application icons, and service-worker functionality for supported offline features. Play on compatible mobile devices and desktop browsers without needing a traditional app-store installation.\n\nTECHNOLOGY\nThe project uses HTML, CSS, and JavaScript, with WebRTC for voice communication, Firebase-related functionality for online features, and Progressive Web App technologies.\n\nSOURCE CODE\nThe project source code is available on GitHub for inspection and development:\nhttps://github.com/RochTools/the-mill-game\n\nPLAY ONLINE\nhttps://rochtools.github.io/the-mill-game/\n\nThe Mill Game brings classic board-game strategy and modern online interaction together in one accessible web application. Think ahead, form your mills, and win the match.",
+  "keywords": [
+    "The Mill Game",
+    "Nine Men's Morris",
+    "Mill board game",
+    "online board game",
+    "offline strategy game",
+    "play against computer",
+    "two player board game",
+    "online multiplayer game",
+    "WebRTC voice chat game",
+    "spectator mode game",
+    "installable web game",
+    "Progressive Web App game",
+    "classic strategy board game",
+    "browser board game",
+    "StepTuDeen",
+    "RochTools"
+  ],
+  "verified": true,
+  "featured": true,
+  "sourceCode": "https://github.com/RochTools/the-mill-game"
+}
