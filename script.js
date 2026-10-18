@@ -234,7 +234,7 @@ function appListItem(app) {
     ? `<span class="badge-os">${icon('check')} Open Source</span>`
     : '';
   return `
-    <a class="app-item" href="view.html?id=${encodeURIComponent(app.id)}">
+    <a class="app-item" href="view.html?c=${app.category}&id=${encodeURIComponent(app.id)}">
       <div class="app-icon">${icon(app.icon || app.category)}</div>
       <div class="app-info">
         <div class="app-name">${esc(app.name)}</div>
@@ -492,12 +492,11 @@ function setupReviews(app) {
 }
 
 /* ── Detail page ── */
-function renderView(apps, params) {
+function renderView(app) {
   const box = $('#detail');
-  const app = apps.find((a) => a.id === params.get('id'));
 
   if (!app) {
-    box.innerHTML = '<p class="empty">App not found. <a href="index.html">Back to store</a></p>';
+    box.innerHTML = '<p class="empty">App not found. <a href="./">Back to store</a></p>';
     return;
   }
 
@@ -729,14 +728,30 @@ function showNetError(box, kind) {
   if (page === 'info') { renderInfo(params); return; }
 
   let apps = [];
+  let app = null;
   let loadError = null;
   try {
-    const res = await fetch('apps.json', { cache: 'no-cache' });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
-    apps = data.apps || [];
+    if (page === 'view') {
+      let id = params.get('id') || '';
+      let c  = params.get('c')  || '';
+      if (!/^[\w-]+$/.test(id)) id = '';
+      if (id && !CATS[c]) {   // پرانے لنک جن میں c نہیں
+        const r = await fetch('store-index.json', { cache: 'no-cache' });
+        if (r.ok) c = ((await r.json()).apps.find((a) => a.id === id) || {}).category || '';
+      }
+      if (id && CATS[c]) {
+        const res = await fetch(`${c}/${id}.json`, { cache: 'no-cache' });
+        if (res.ok) {
+          try { app = await res.json(); app.id = id; app.category = c; } catch (_) { app = null; }
+        } else if (res.status !== 404) throw new Error('HTTP ' + res.status);
+      }
+    } else {
+      const res = await fetch('store-index.json', { cache: 'no-cache' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      apps = (await res.json()).apps || [];
+    }
   } catch (err) {
-    console.error('Could not load apps.json', err);
+    console.error('Could not load data', err);
     loadError = err instanceof TypeError ? 'offline' : 'server';   // TypeError = نیٹ ورک نہیں
   }
 
@@ -751,5 +766,5 @@ function showNetError(box, kind) {
   }
 
   if (page === 'home') renderHome(apps, params);
-  if (page === 'view') renderView(apps, params);
+  if (page === 'view') renderView(app);
 })();
