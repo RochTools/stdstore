@@ -113,7 +113,7 @@ const HOW_TO_HTML = `
   <ol>
     <li>Open this app in Chrome.</li>
     <li>Tap the three-dot menu (⋮) at the top right.</li>
-    <li>Tap <strong>Add to Home screen or install and create shortcut</strong> or <strong>Install app</strong>.</li>
+    <li>Tap <strong>Add to Home screen</strong> or <strong>Install app</strong>.</li>
     <li>Tap <strong>Add</strong> or <strong>Install</strong>. The icon appears on your home screen.</li>
   </ol>
   <h3>iPhone (Safari)</h3>
@@ -597,6 +597,65 @@ function renderInfo(params) {
   `;
 }
 
+/* ── Install button (PWA) ── */
+let deferredInstall = null;
+const isStandalone = () =>
+  window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+const isIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+
+function setupInstall() {
+  const dl = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>';
+  const buttons = [];
+
+  const actions = document.querySelector('.top-actions');
+  if (actions) {
+    const pill = document.createElement('button');
+    pill.type = 'button'; pill.className = 'install-pill'; pill.hidden = true;
+    pill.innerHTML = dl + '<span>Install</span>';
+    actions.prepend(pill);
+    buttons.push(pill);
+  }
+  const menu = document.getElementById('side-menu');
+  if (menu) {
+    const item = document.createElement('a');
+    item.href = '#'; item.className = 'menu-install'; item.hidden = true;
+    item.innerHTML = dl + '<span>Install App</span>';
+    menu.prepend(item);
+    buttons.push(item);
+  }
+  if (!buttons.length) return;
+
+  const setVisible = (v) => buttons.forEach((b) => { b.hidden = !v; });
+
+  // اینڈرائیڈ/کروم: براؤزر خود بتاتا ہے کہ ایپ انسٹال ہو سکتی ہے
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredInstall = e;
+    if (!isStandalone()) setVisible(true);
+  });
+  window.addEventListener('appinstalled', () => {
+    deferredInstall = null;
+    setVisible(false);
+    netToast('App installed');
+  });
+
+  // آئی فون (سفاری) میں خودکار انسٹال نہیں ہوتا — ہدایت دکھائیں
+  if (isIOS() && !isStandalone()) setVisible(true);
+
+  buttons.forEach((b) => b.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if (deferredInstall) {
+      deferredInstall.prompt();
+      const choice = await deferredInstall.userChoice.catch(() => null);
+      deferredInstall = null;
+      if (choice && choice.outcome === 'accepted') setVisible(false);
+      else setVisible(false);   // کروم دوبارہ فوراً نہیں پوچھتا
+    } else if (isIOS()) {
+      netToast('Tap the Share button, then "Add to Home Screen"');
+    }
+  }));
+}
+
 /* ── PWA + offline ── */
 function netToast(text) {
   let t = document.getElementById('net-toast');
@@ -654,6 +713,7 @@ function showNetError(box, kind) {
 
 /* ── Boot ── */
 (async function init() {
+  setupInstall();   // مینیو سے پہلے، تاکہ انسٹال بٹن بھی مینیو کے لنکس میں شامل ہو
   setupMenu();
   setupPWA();
   const page   = document.body.dataset.page;
