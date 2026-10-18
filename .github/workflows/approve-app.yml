@@ -1,0 +1,62 @@
+name: Approve app
+on:
+  issues:
+    types: [labeled]
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: approve-app
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.event.label.name == 'approved' && contains(github.event.issue.labels.*.name, 'app-submission')
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      ISSUE_NUMBER: ${{ github.event.issue.number }}
+      RESULT_FILE: ${{ runner.temp }}/result.md
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Create the app file from the issue
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_LABELS: ${{ toJson(github.event.issue.labels.*.name) }}
+        run: node approve-app.js
+      - name: Rebuild store index
+        run: node build-index.js
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add app tool game store-index.json
+          git commit -m "Add app from issue #${ISSUE_NUMBER}"
+          git push
+      - name: Comment and close
+        run: |
+          gh issue comment "$ISSUE_NUMBER" --body "✅ Approved and published. It will appear in the store in a minute or two."
+          gh issue close "$ISSUE_NUMBER" --reason completed
+      - name: Report the problem
+        if: failure()
+        run: |
+          if [ -f "$RESULT_FILE" ]; then
+            gh issue comment "$ISSUE_NUMBER" --body-file "$RESULT_FILE"
+          else
+            gh issue comment "$ISSUE_NUMBER" --body "❌ Publishing failed. The owner will check the Actions log."
+          fi
+          gh issue edit "$ISSUE_NUMBER" --remove-label approved
+
+  reject:
+    if: github.event.label.name == 'rejected' && contains(github.event.issue.labels.*.name, 'app-submission')
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      ISSUE_NUMBER: ${{ github.event.issue.number }}
+    steps:
+      - name: Close the issue
+        run: gh issue close "$ISSUE_NUMBER" --reason "not planned"

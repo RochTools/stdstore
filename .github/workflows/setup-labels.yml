@@ -1,0 +1,17 @@
+name: Setup labels
+on: workflow_dispatch
+permissions:
+  issues: write
+jobs:
+  labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create labels
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh label create app-submission --color 0e8a16 --description "New app submission" --force
+          gh label create approved --color 2da44e --description "Reviewed. Publish this app" --force
+          gh label create rejected --color d73a4a --description "Not accepted" --force
+          gh label create featured --color fbca04 --description "Also show in Signature For You" --force
