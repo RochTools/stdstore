@@ -3,7 +3,7 @@
    - apps.json اور ریویو کبھی محفوظ نہیں ہوتے، اس لیے انٹرنیٹ نہ ہو تو "No internet connection" دکھتا ہے
    - جب انٹرنیٹ ہو تو ہمیشہ تازہ فائل آتی ہے (پرانا کیش نہیں چلتا)
    فائلیں بدلنے کے بعد نیچے CACHE کا ورژن بڑھا دیں */
-const CACHE = 'std-store-v2';
+const CACHE = 'std-store-v3';
 const SHELL = [
   '', 'index.html', 'view.html', 'info.html',
   'style.css', 'script.js', 'manifest.webmanifest',
