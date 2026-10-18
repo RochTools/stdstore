@@ -1,1 +1,187 @@
+name: Submit your app
+description: Request a listing in STD App Store. Open source apps, tools and games only.
+title: "[Submission] "
+labels: ["app-submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for sharing your work with the community.
 
+        STD App Store lists **open source** web apps, tools and games. Every submission is checked by hand: the source code is read and compared with the live app before it is listed.
+
+        **This issue is public.** Do not write your phone number, email address or any private information here.
+
+  - type: input
+    id: name
+    attributes:
+      label: App Name
+      placeholder: "Profit Tracker"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - App
+        - Tool
+        - Game
+    validations:
+      required: true
+
+  - type: input
+    id: app_id
+    attributes:
+      label: App ID
+      description: "Lowercase English letters, numbers and hyphens only. It becomes the file name. Example: car-racing"
+      placeholder: "car-racing"
+    validations:
+      required: true
+
+  - type: input
+    id: live_url
+    attributes:
+      label: Live App URL
+      description: "Where the app runs. Must start with https://"
+      placeholder: "https://example.pages.dev/"
+    validations:
+      required: true
+
+  - type: input
+    id: source_url
+    attributes:
+      label: Source Code URL
+      description: "Public repository of this exact app (GitHub, GitLab, Codeberg or similar). Must start with https://"
+      placeholder: "https://github.com/yourname/yourapp"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: license
+    attributes:
+      label: License
+      options:
+        - MIT License
+        - Apache License 2.0
+        - GNU GPL v3
+        - GNU GPL v2
+        - GNU AGPL v3
+        - GNU LGPL v3
+        - BSD 3-Clause License
+        - BSD 2-Clause License
+        - Mozilla Public License 2.0
+        - ISC License
+        - The Unlicense
+        - Other open source license (name it in the full description)
+    validations:
+      required: true
+
+  - type: input
+    id: developer
+    attributes:
+      label: Developer or Team Name
+    validations:
+      required: true
+
+  - type: input
+    id: tagline
+    attributes:
+      label: Tagline
+      description: "Optional. One short line (max 100 characters)."
+      placeholder: "Track your weekly earnings and expenses"
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: "Optional."
+      placeholder: "v1.0.0"
+
+  - type: dropdown
+    id: platforms
+    attributes:
+      label: Supported Platforms
+      multiple: true
+      options:
+        - Android
+        - iOS
+        - Desktop
+    validations:
+      required: true
+
+  - type: input
+    id: icon_url
+    attributes:
+      label: Icon URL
+      description: "Optional. Direct https:// link to a square image (png, jpg, webp or svg). If empty, a default icon is used."
+      placeholder: "https://example.com/icon.png"
+
+  - type: input
+    id: website
+    attributes:
+      label: Website
+      description: "Optional. Project website or blog. Must start with https://"
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: "Optional. Separate with commas (max 12)."
+      placeholder: "Quran, Offline Support, PWA"
+
+  - type: input
+    id: keywords
+    attributes:
+      label: Search Keywords
+      description: "Optional. Words people may type to find your app, separated by commas (max 25). Any language."
+      placeholder: "expense tracker, income, profit"
+
+  - type: input
+    id: commit
+    attributes:
+      label: Reviewed Commit or Release
+      description: "The exact commit hash or release tag you want us to review. If the code changes later, the app may be reviewed again."
+      placeholder: "v1.0.0 or a1b2c3d"
+    validations:
+      required: true
+
+  - type: textarea
+    id: short
+    attributes:
+      label: Short Description
+      description: "One or two sentences (max 300 characters). Shown in the store list."
+    validations:
+      required: true
+
+  - type: textarea
+    id: full
+    attributes:
+      label: Full Description
+      description: "What the app does, its main features and what data it stores or sends (max 4000 characters). Leave a blank line between paragraphs."
+    validations:
+      required: true
+
+  - type: textarea
+    id: features
+    attributes:
+      label: Key Features
+      description: "Optional. One feature per line in this form: Title | short subtitle (max 12 lines)."
+      placeholder: |
+        Weekly Charts | See income and expenses clearly
+        Built-in Notebook | Save personal notes
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmations
+      options:
+        - label: I am the developer of this app, or I have the developer's permission to submit it.
+          required: true
+        - label: The live app is built from exactly the source code linked above.
+          required: true
+        - label: The app has no malicious code, no crypto miner and no hidden tracking or data collection.
+          required: true
+        - label: I understand that the app can be removed from the store at any time if its code or behaviour changes.
+          required: true
