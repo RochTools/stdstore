@@ -431,3 +431,18 @@ textarea.rv-field { min-height: 96px; resize: vertical; }
   font-size: 20px; font-weight: 800; color: var(--black);
 }
 .menu-head .ico { width: 24px; height: 24px; color: var(--green); }
+
+/* ── Install button ── */
+.install-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--green); color: #fff; border: none; border-radius: 999px;
+  padding: 8px 14px; font-size: 13px; font-weight: 700; cursor: pointer;
+}
+.install-pill .ico { width: 15px; height: 15px; }
+.side-menu a.menu-install {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--green); color: #fff; font-weight: 700; margin-bottom: 8px;
+}
+.side-menu a.menu-install:hover { background: var(--green-dark); color: #fff; }
+.side-menu a.menu-install .ico { width: 18px; height: 18px; }
+.top-actions { align-items: center; gap: 8px; }
