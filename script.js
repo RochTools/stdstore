@@ -71,6 +71,9 @@ function statsFor(list, appId) {
 
 let RATING_STATS = {};   // appId -> {count, avg}
 
+// ایپ جمع کروانے کا فارم (گیٹ ہب Issue Form)
+const SUBMIT_URL = 'https://github.com/RochTools/stdstore/issues/new?template=app-submit.yml';
+
 const CATS = {
   app:  { label: 'App',  icon: 'app'  },
   tool: { label: 'Tool', icon: 'tool' },
@@ -83,6 +86,7 @@ const INFO = {
     body: [
       'STD App Store is a free directory of web apps, tools and games. Every app opens right inside your browser, and you can add it to your phone or computer whenever you like.',
       'Open source developers can request a listing. Each project is checked before it is published.',
+      '<span>Want to list your open source app? <a href="https://github.com/RochTools/stdstore/issues/new?template=app-submit.yml" target="_blank" rel="noopener">Submit it here</a>.</span>',
     ],
   },
   privacy: {
@@ -178,6 +182,17 @@ function setupMenu() {
     head.className = 'menu-head';
     head.innerHTML = `${icon('gear')}<span>Menu</span>`;
     menu.prepend(head);
+  }
+
+  // مینیو کے آخر میں "Submit Your App" کا لنک (ایک بار بنتا ہے)
+  if (!menu.querySelector('.menu-submit')) {
+    const link = document.createElement('a');
+    link.className = 'menu-submit';
+    link.href = SUBMIT_URL;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = 'Submit Your App';
+    menu.appendChild(link);
   }
 
   const open  = () => { menu.classList.add('open');    overlay && overlay.classList.add('show'); };
