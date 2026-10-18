@@ -3,7 +3,7 @@
    - apps.json اور ریویو کبھی محفوظ نہیں ہوتے، اس لیے انٹرنیٹ نہ ہو تو "No internet connection" دکھتا ہے
    - جب انٹرنیٹ ہو تو ہمیشہ تازہ فائل آتی ہے (پرانا کیش نہیں چلتا)
    فائلیں بدلنے کے بعد نیچے CACHE کا ورژن بڑھا دیں */
-const CACHE = 'std-store-v1';
+const CACHE = 'std-store-v2';
 const SHELL = [
   '', 'index.html', 'view.html', 'info.html',
   'style.css', 'script.js', 'manifest.webmanifest',
@@ -38,7 +38,11 @@ self.addEventListener('fetch', (event) => {
 
   event.respondWith((async () => {
     try {
-      const res = await fetch(url.href, { cache: 'no-cache' });   // ہمیشہ سرور سے تازہ
+            let res = await fetch(url.href, { cache: 'no-cache' });   // ہمیشہ سرور سے تازہ
+      if (res && res.redirected) {
+        // ری ڈائریکٹ شدہ جواب نیویگیشن کے لیے سیدھا واپس نہیں دے سکتے
+        res = new Response(res.body, { status: res.status, statusText: res.statusText, headers: res.headers });
+      }
       if (res && res.ok) {
         const cache = await caches.open(CACHE);
         cache.put(key(url), res.clone());
