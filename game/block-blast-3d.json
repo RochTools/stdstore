@@ -1,0 +1,57 @@
+{
+  "name": "Block Blast 3D",
+  "icon": "https://github.com/RochTools/block-blast-game/blob/main/icons/icon-192.png",
+  "path": "https://rochtools.github.io/block-blast-game/",
+  "developer": "StepTuDeen",
+  "tagline": "Fast, offline 3D block puzzle",
+  "version": "1.2.0",
+  "size": "Web App",
+  "updated": "Oct 2026",
+  "website": "https://steptudeen.blogspot.com/",
+  "license": "MIT License",
+  "compatibility": "Web App (Android)",
+  "tags": [
+    "Puzzle",
+    "3D",
+    "Offline Support",
+    "PWA",
+    "Family Friendly",
+    "No Ads"
+  ],
+  "features": [
+    {
+      "title": "Theme Sounds",
+      "sub": "Multiple sound themes built in"
+    },
+    {
+      "title": "Smooth Gameplay",
+      "sub": "Fast and fluid 3D puzzle"
+    },
+    {
+      "title": "Offline Play",
+      "sub": "Works after the first load"
+    },
+    {
+      "title": "Installable",
+      "sub": "Android, iPhone and desktop"
+    },
+    {
+      "title": "Family Friendly",
+      "sub": "No ads, no gambling promotions"
+    }
+  ],
+  "short": "A fast, offline-ready puzzle game with 3D visuals and multiple theme sounds. Install it on your phone or computer and play anywhere, even without internet.",
+  "description": "Block Blast 3D is a fast and smooth puzzle game with 3D visuals and multiple built-in theme sounds. It is a Progressive Web App: after the first load it works offline thanks to a service worker, and it can be installed on Android, iPhone and desktop like a native app.\n\nThe game is family friendly. It has no ads of any kind, no inappropriate content and no gambling or betting promotions.\n\nMade by StepTuDeen.",
+  "keywords": [
+    "block blast",
+    "block puzzle",
+    "puzzle game",
+    "3d game",
+    "offline game",
+    "kids game"
+  ],
+  "verified": true,
+  "featured": true,
+  "source": "https://github.com/RochTools/block-blast-game",
+  "reviewedCommit": "v1.2.0"
+}
